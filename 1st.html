@@ -283,20 +283,20 @@
         }
     </style>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
 <body>
 <div id="wrapper">
-    <div id="counter"> </div>
+    <div id="counter">Kan veikiam?</div>
     <div id="wheel">
         <div id="inner-wheel">
-            <div class="sec"><span class="fa fa-dollar-sign"></span></div>
-            <div class="sec"><span class="fa fa-frown"></span></div>
-            <div class="sec"><span class="fa fa-gifts"></span></div>
-            <div class="sec"><span class="fa fa-frown"></span></div>
-            <div class="sec"><span class="fa fa-money-bill-alt"></span></div>
-            <div class="sec"><span class="fa fa-sad-cry"></span></div>
+            <div class="sec"><span class="fa fa-computer"></span></div>
+            <div class="sec"><span class="fa fa-dumbbell"></span></div>
+            <div class="sec"><span class="fa fa-person-swimming"></span></div>
+            <div class="sec"><span class="fa fa-cable-car"></span></div>
+            <div class="sec"><span class="fa fa-bowling-ball"></span></div>
+            <div class="sec"><span class="fa fa-face-kiss-wink-heart"></span></div>
         </div>
 
         <div id="spin">
@@ -313,36 +313,37 @@
 </body>
 <script>
     //set default degree (360*5)
-    var degree = 1800;
+    var degree = 900;
     //number of clicks = 0
     var clicks = 0;
-    var attempts = 5;
+    var attempts = 0;
     var degreeMapping = {
-        one: "You win $750",
-        two: "You win $50",
-        three: "You win $500",
-        four: "You win $50",
-        five: "You win $150",
-        six: "You win $0"
+        one: "You lost",
+        two: "Kodėl gi ne :)",
+        three: "You lost",
+        four: "You lost",
+        five: "You lost",
+        six: "You lost"
     };
 
-    var scam = [0.59, 0.85, 1.70, 2.3, 2.9, 3.50];
+    var scam = [1, 1, 1, 1, 1, 1];
     $(document).ready(function () {
         /*WHEEL SPIN FUNCTION*/
-        if (attempts > 0) {
+        if (attempts >= 0) {
             $("#spin").click(function () {
                 //var extraDegree = [Math.floor(scam[attempts])];
                 var extraDegree = Math.floor(scam[attempts]*100);;
                 //add 1 every click
                 clicks++;
                 attempts--;
-                $("#counter").text(`Attempts Remaining: ${attempts+1}`);
+                // $("#counter").text(`Attempts Remaining: ${attempts+1}`);
 
                 /*multiply the degree by number of clicks
                 generate random number between 1 - 360,
               then add to the new degree*/
 
                 var newDegree = degree * clicks;
+                console.log('new degree', newDegree);
                 totalDegree = newDegree + extraDegree;
 
 

@@ -283,7 +283,7 @@
         }
     </style>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
 <body>
@@ -291,12 +291,12 @@
     <div id="counter"> </div>
     <div id="wheel">
         <div id="inner-wheel">
-            <div class="sec"><span class="fa fa-dollar-sign"></span>GG1</div>
-            <div class="sec"><span class="fa fa-frown"></span></div>
-            <div class="sec"><span class="fa fa-gifts"></span></div>
-            <div class="sec"><span class="fa fa-frown"></span></div>
-            <div class="sec"><span class="fa fa-money-bill-alt"></span></div>
-            <div class="sec"><span class="fa fa-sad-cry"></span></div>
+            <div class="sec"><span class="fa fa-forward"></span></div>
+            <div class="sec"><span class="fa fa-wine-glass"></span></div>
+            <div class="sec"><span class="fa fa-music"></span></div>
+            <div class="sec"><span class="fa fa-people-robbery"></span></div>
+            <div class="sec"><span class="fa fa-question"></span></div>
+            <div class="sec"><span class="fa fa-champagne-glasses"></span></div>
         </div>
 
         <div id="spin">
@@ -313,10 +313,10 @@
 </body>
 <script>
     //set default degree (360*5)
-    var degree = 900;
+    var degree = 1800;
     //number of clicks = 0
     var clicks = 0;
-    var attempts = 0;
+    // var attempts = 5;
     var degreeMapping = {
         one: "You win $750",
         two: "You win $50",
@@ -326,25 +326,28 @@
         six: "You win $0"
     };
 
-    var scam = [1, 1, 1, 1, 1, 1];
+    // var scam = [0.59, 0.85, 1.70, 2.3, 2.9, 3.50];
     $(document).ready(function () {
         /*WHEEL SPIN FUNCTION*/
-        if (attempts >= 0) {
+        // if (attempts > 0) {
             $("#spin").click(function () {
-                //var extraDegree = [Math.floor(scam[attempts])];
-                var extraDegree = Math.floor(scam[attempts]*100);;
+                // var extraDegree = Math.floor(scam[attempts]*100);;
                 //add 1 every click
                 clicks++;
-                attempts--;
-                $("#counter").text(`Attempts Remaining: ${attempts+1}`);
+                // attempts--;
+                // $("#counter").text(`Attempts Remaining: ${attempts+1}`);
 
                 /*multiply the degree by number of clicks
                 generate random number between 1 - 360,
               then add to the new degree*/
 
-                var newDegree = degree * clicks;
-                console.log('new degree', newDegree);
-                totalDegree = newDegree + extraDegree;
+                // var newDegree = degree * clicks;
+                // degree = Math.floor(Math.random() * 1800)
+                degree += Math.floor(Math.random() * 1800);
+                // var newDegree = newDegree + Math.floor(Math.random() * 1800);
+                console.log('new degree', degree);
+                // totalDegree = newDegree + extraDegree;
+                totalDegree = degree;
 
 
 
@@ -389,26 +392,26 @@
 
                     $('#inner-wheel').on('transitionend webkitTransitionEnd oTransitionEnd', function () {
                         // your event handler
-                        console.log(extraDegree)
-                        if (extraDegree >= 0 && extraDegree < 60) {
-                            $("#winnings").text(`${degreeMapping.one}`);
-                        } else if (extraDegree >= 60 && extraDegree < 120) {
-                            $("#winnings").text(`${degreeMapping.two}`);
-                        } else if (extraDegree >= 120 && extraDegree < 180) {
-                            $("#winnings").text(`${degreeMapping.three}`);
-                        } else if (extraDegree >= 180 && extraDegree < 240) {
-                            $("#winnings").text(`${degreeMapping.four}`);
-                        } else if (extraDegree >= 240 && extraDegree < 300) {
-                            $("#winnings").text(`${degreeMapping.five}`);
-                        } else if(extraDegree>=300){
-                            $("#winnings").text(`${degreeMapping.six}`);
-                        }
+                        // console.log(extraDegree)
+                        // if (extraDegree >= 0 && extraDegree < 60) {
+                        //     $("#winnings").text(`${degreeMapping.one}`);
+                        // } else if (extraDegree >= 60 && extraDegree < 120) {
+                        //     $("#winnings").text(`${degreeMapping.two}`);
+                        // } else if (extraDegree >= 120 && extraDegree < 180) {
+                        //     $("#winnings").text(`${degreeMapping.three}`);
+                        // } else if (extraDegree >= 180 && extraDegree < 240) {
+                        //     $("#winnings").text(`${degreeMapping.four}`);
+                        // } else if (extraDegree >= 240 && extraDegree < 300) {
+                        //     $("#winnings").text(`${degreeMapping.five}`);
+                        // } else if(extraDegree>=300){
+                        //     $("#winnings").text(`${degreeMapping.six}`);
+                        // }
                     });
 
                     noY = t.offset().top;
                 });
             });
-        }
+        // }
     }); //DOCUMENT READY
 
 </script>
